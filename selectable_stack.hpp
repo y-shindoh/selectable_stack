@@ -1,7 +1,7 @@
 /* -*- coding: utf-8; tab-width: 4 -*- */
 /**
  * @file	selectable_stack.hpp
- * @brief	最小値を最悪計算量Θ(1)で出力できるスタックの実装
+ * @brief	最優先値を最悪計算量Θ(1)で出力できるスタックの実装
  * @author	Yasutaka SHINDOH / 新堂 安孝
  */
 
@@ -10,7 +10,7 @@
 #include <vector>
 
 /**
- * @class	最小値を最悪計算量Θ(1)で出力できるスタック
+ * @class	最優先値を最悪計算量Θ(1)で出力できるスタック
  * @note	テンプレートの型 @a TYPE はスタックのキーの型。
  */
 template<typename TYPE>
