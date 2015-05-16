@@ -22,7 +22,7 @@ select(const int& left,
  */
 int main()
 {
-	SelectableStack<int>* stack = new SelectableStack<int>(select);
+	ys::SelectableStack<int>* stack = new ys::SelectableStack<int>(select);
 
 	stack->push(2);
 	stack->push(3);
