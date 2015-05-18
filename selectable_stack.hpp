@@ -5,6 +5,9 @@
  * @author	Yasutaka SHINDOH / 新堂 安孝
  */
 
+#ifndef	__SELECTABLE_STACK_HPP__
+#define	__SELECTABLE_STACK_HPP__	"selectable_stack.hpp"
+
 #include <cstddef>
 #include <cassert>
 #include <vector>
@@ -135,3 +138,5 @@ namespace ys
 			}
 	};
 };
+
+#endif	// __SELECTABLE_STACK_HPP__
