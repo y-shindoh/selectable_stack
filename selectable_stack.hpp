@@ -131,14 +131,11 @@ namespace ys
 			{
 				assert(!data_.empty());
 				assert(!index_.empty());
-				assert(select_);
-
-				const size_t i = index_.back();
-				if (select_(data_.back(), data_[i])) {
-					index_.pop_back();
-				}
 
 				data_.pop_back();
+
+				const size_t l = index_.back();
+				if (data_.size() <= l) index_.pop_back();
 			}
 	};
 };
