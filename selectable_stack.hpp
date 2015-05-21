@@ -133,9 +133,7 @@ namespace ys
 				assert(!index_.empty());
 
 				data_.pop_back();
-
-				const size_t l = index_.back();
-				if (data_.size() <= l) index_.pop_back();
+				if (data_.size() <= index_.back()) index_.pop_back();
 			}
 	};
 };
