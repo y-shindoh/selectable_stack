@@ -14,7 +14,7 @@ bool
 select(const int& left,
 	   const int& right)
 {
-	return left <= right;
+	return left < right;
 }
 
 /**

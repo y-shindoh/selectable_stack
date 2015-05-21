@@ -29,7 +29,7 @@ namespace ys
 		/**
 		 * 最優先を定義する関数
 		 * @note	第一引数を優先すべき時は @a true を、そうでないときは @a false を返す。
-		 * @note	優先度が同等の場合は @a true を返すこと。
+		 * @note	優先度が同等の場合は @a false を返すこと。
 		 */
 		bool (* select_)(const TYPE&, const TYPE&);
 
