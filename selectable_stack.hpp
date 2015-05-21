@@ -25,11 +25,11 @@ namespace ys
 
 		std::vector<TYPE> data_;	///< 本来のスタック
 		std::vector<size_t> index_;	///< 最優先値のインデックスのスタック
-		size_t length_;				///< スタックの要素数
 
 		/**
 		 * 最優先を定義する関数
 		 * @note	第一引数を優先すべき時は @a true を、そうでないときは @a false を返す。
+		 * @note	優先度が同等の場合は @a true を返すこと。
 		 */
 		bool (* select_)(const TYPE&, const TYPE&);
 
@@ -40,8 +40,7 @@ namespace ys
 		 * @param[in]	select	最優先を定義する関数 (see @a select_ )
 		 */
 		SelectableStack(bool (* select)(const TYPE&, const TYPE&))
-			: length_(0),
-			  select_(select)
+			: select_(select)
 			{
 				;
 			}
@@ -63,7 +62,7 @@ namespace ys
 		bool
 		empty() const
 			{
-				return length_ == 0;
+				return data_.empty();
 			}
 
 		/**
@@ -74,7 +73,7 @@ namespace ys
 		size_t
 		size() const
 			{
-				return length_;
+				return data_.size();
 			}
 
 		/**
@@ -88,15 +87,13 @@ namespace ys
 		TYPE
 		top(bool prior = false) const
 			{
-				assert(0 < length_);
+				assert(!data_.empty());
+				assert(!index_.empty());
 
-				if (prior) {
-					size_t i = index_.back();
-					return data_[i];
-				}
-				else {
-					return data_.back();
-				}
+				if (!prior) return data_.back();
+
+				size_t i = index_.back();
+				return data_[i];
 			}
 
 		/**
@@ -110,16 +107,18 @@ namespace ys
 			{
 				assert(select_);
 
-				++length_;
-				data_.push_back(data);
-				if (1 < length_) {
+				if (index_.empty()) {
+					index_.push_back(0);
+				}
+				else {
 					size_t i = index_.back();
-					if (select_(data_[i], data)) {
+					if (select_(data, data_[i])) {
+						i = data_.size();
 						index_.push_back(i);
-						return;
 					}
 				}
-				index_.push_back(length_ - 1);
+
+				data_.push_back(data);
 			}
 
 		/**
@@ -130,11 +129,16 @@ namespace ys
 		void
 		pop()
 			{
-				assert(0 < length_);
+				assert(!data_.empty());
+				assert(!index_.empty());
+				assert(select_);
 
-				--length_;
+				const size_t i = index_.back();
+				if (select_(data_.back(), data_[i])) {
+					index_.pop_back();
+				}
+
 				data_.pop_back();
-				index_.pop_back();
 			}
 	};
 };
