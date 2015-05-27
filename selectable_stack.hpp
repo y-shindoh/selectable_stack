@@ -80,7 +80,7 @@ namespace ys
 		 * スタックの値を取得
 		 * @param[in]	prior	返却値のフラグ
 		 * @return	最後にスタックに追加した値 (@a prior が @a false の時)
-		 もしくは最優先値 (@a prior が @a true の時) を取得
+					もしくは最優先値 (@a prior が @a true の時) を取得
 		 * @note	事前にスタックが空でないことを確認しておくこと。
 		 * @note	最悪計算量はO(1)。
 		 */
